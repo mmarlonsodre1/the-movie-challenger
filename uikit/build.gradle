@@ -1,0 +1,11 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+
+apply from: "$rootProject.projectDir/android-common.gradle"
+
+
+dependencies {
+    appDependencies.each { add(it.configuration, it.dependency, it.options) }
+}

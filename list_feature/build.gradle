@@ -1,0 +1,14 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-parcelize'
+
+apply from: "$rootProject.projectDir/android-common.gradle"
+
+
+dependencies {
+    implementation project(':base_feature')
+//    api project(':domain')
+    api project(':uikit')
+
+    appDependencies.each { add(it.configuration, it.dependency, it.options) }
+}

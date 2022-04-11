@@ -1,0 +1,39 @@
+apply from: 'versions.gradle'
+apply from: 'libs.gradle'
+apply from: 'testLibs.gradle'
+apply from: 'testDependencies.gradle'
+apply from: 'dependencies.gradle'
+
+buildscript {
+
+    ext.kotlinVersion = '1.6.10'
+
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+        maven { url "https://maven.google.com" }
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.0.4'
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.4.2"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "com.google.gms:google-services:4.3.10"
+    }
+}
+
+
+allprojects {
+    configurations.all {
+        resolutionStrategy {
+            force 'org.xerial:sqlite-jdbc:3.34.0'
+        }
+    }
+}
+
+
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

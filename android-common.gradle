@@ -1,0 +1,52 @@
+android {
+    compileSdk 32
+
+    defaultConfig {
+        minSdk 23
+        targetSdk 32
+        versionCode 1
+        versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    flavorDimensions "api"
+    productFlavors {
+        dev {
+            dimension "api"
+            versionNameSuffix "-dev"
+        }
+        prd {
+            dimension "api"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+        unitTests.all {
+            useJUnitPlatform()
+        }
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+}

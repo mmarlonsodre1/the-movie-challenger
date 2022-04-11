@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">globoplay</string>
+    <string name="home">Início</string>
+    <string name="my_list">Minha lista</string>
+</resources>
