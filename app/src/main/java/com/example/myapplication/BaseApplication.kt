@@ -3,8 +3,8 @@ package com.example.myapplication
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
-import br.com.havan.di.*
-import br.com.havan.di.navigation.navigationModule
+import com.example.di.*
+import com.example.di.navigation.navigationModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 

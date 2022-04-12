@@ -1,4 +1,4 @@
-package br.com.havan.di.navigation
+package com.example.di.navigation
 
 val navigationModule = listOf(
     navigationHomeModule,

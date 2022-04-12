@@ -6,7 +6,7 @@ apply from: "$rootProject.projectDir/android-common.gradle"
 
 dependencies {
 
-//    implementation project(':domain')
+    implementation project(':domain')
     implementation project(':uikit')
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 

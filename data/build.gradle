@@ -2,5 +2,5 @@ apply plugin: 'kotlin'
 
 dependencies {
     dataDependencies.each { add(it.configuration, it.dependency, it.options) }
-//    api project(':domain')
+    api project(':domain')
 }
