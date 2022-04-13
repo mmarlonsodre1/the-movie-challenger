@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-parcelize'
+apply plugin: "androidx.navigation.safeargs.kotlin"
 
 apply from: "$rootProject.projectDir/android-common.gradle"
 
@@ -11,4 +12,5 @@ dependencies {
     api project(':uikit')
 
     appDependencies.each { add(it.configuration, it.dependency, it.options) }
+    intentDependencies.each { add(it.configuration, it.dependency) }
 }

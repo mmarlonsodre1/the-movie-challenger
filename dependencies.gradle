@@ -17,6 +17,8 @@ ext {
             [configuration: "implementation", dependency: "$navigationFragment"],
             [configuration: "implementation", dependency: "$constraintLayout"],
             [configuration: "implementation", dependency: "$material"],
+            [configuration: "implementation", dependency: "$glide"],
+            [configuration: "annotationProcessor", dependency: "$glideAnnotation"],
     ]
 
     intentDependencies = appDependencies + [

@@ -11,7 +11,7 @@ data class MovieDetailResponse(
     @SerializedName("budget")
     val budget: Int?,
     @SerializedName("genres")
-    val genres: List<GenderResponse>,
+    val genres: List<GenderResponse>?,
     @SerializedName("homepage")
     val homepage: String?,
     @SerializedName("id")

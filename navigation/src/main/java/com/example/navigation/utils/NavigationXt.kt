@@ -13,6 +13,8 @@ import androidx.navigation.*
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 
 fun NavController.safeNavigateUp() = try {
     navigateUp()
@@ -27,12 +29,6 @@ fun NavController.safePopBackStack(@IdRes destination: Int, popUpInclusive: Bool
     false
 }
 
-fun NavController.safeNavigate(directions: NavDirections, navOptions: NavOptions? = null) = try {
-    navigate(directions, navOptions)
-} catch (e: Exception) {
-    e.printStackTrace()
-}
-
 fun NavController.safeNavigate(
     @IdRes resId: Int,
     args: Bundle? = null,
@@ -43,23 +39,11 @@ fun NavController.safeNavigate(
     e.printStackTrace()
 }
 
-fun NavController.safeNavigate(directions: NavDirections, navigatorExtras: Navigator.Extras) = try {
-    navigate(directions, navigatorExtras)
-} catch (e: Exception) {
-    e.printStackTrace()
-}
-
 fun Fragment.popBackStack(@IdRes destination: Int, popUpInclusive: Boolean = false) =
     findNavController().safePopBackStack(destination, popUpInclusive)
 
-fun Fragment.navigate(directions: NavDirections, navOptions: NavOptions? = null) =
-    findNavController().safeNavigate(directions, navOptions)
-
 fun Fragment.navigate(@IdRes resId: Int, args: Bundle? = null, navOptions: NavOptions? = null) =
     findNavController().safeNavigate(resId, args, navOptions)
-
-fun Fragment.navigate(directions: NavDirections, navigatorExtras: Navigator.Extras) =
-    findNavController().safeNavigate(directions, navigatorExtras)
 
 
 fun setAnim() = NavOptions.Builder()

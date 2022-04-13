@@ -3,6 +3,7 @@ package com.example.myapplication
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
 import com.example.di.*
 import com.example.di.navigation.navigationModule
 import org.koin.android.ext.koin.androidContext
@@ -13,7 +14,7 @@ class BaseApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO)
+        AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES)
         startKoin {
             modules(
                 navigationModule +

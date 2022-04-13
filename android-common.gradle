@@ -1,3 +1,9 @@
+ext {
+    def envProperties = new Properties()
+    envProperties.load(project.rootProject.file("gradle.properties").newDataInputStream())
+    ext.environmentProperties = envProperties
+}
+
 android {
     compileSdk 32
 
@@ -17,9 +23,13 @@ android {
         dev {
             dimension "api"
             versionNameSuffix "-dev"
+            buildConfigField "String", "API_QUERY_VALUE", environmentProperties['apiKey']
+            buildConfigField "String", "IMAGE_BASE_URL", environmentProperties['imageUrl']
         }
         prd {
             dimension "api"
+            buildConfigField "String", "API_QUERY_VALUE", environmentProperties['apiKey']
+            buildConfigField "String", "IMAGE_BASE_URL", environmentProperties['imageUrl']
         }
     }
 

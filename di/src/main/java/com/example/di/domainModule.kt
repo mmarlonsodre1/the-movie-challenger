@@ -4,6 +4,7 @@ import com.example.domain.core.ThreadContextProvider
 import com.example.domain.usecase.gender.GetGendersUserCase
 import com.example.domain.usecase.movie.GetMovieDetailUserCase
 import com.example.domain.usecase.movie.GetMoviesUserCase
+import com.example.domain.usecase.movie.GetSimilarMoviesUserCase
 import com.example.domain.usecase.search.SearchMoviesUserCase
 import kotlinx.coroutines.CoroutineScope
 import org.koin.dsl.module
@@ -29,6 +30,13 @@ val domainModule = module {
 
     factory { (scope: CoroutineScope) ->
         GetMovieDetailUserCase(
+            scope = scope,
+            repository = get()
+        )
+    }
+
+    factory { (scope: CoroutineScope) ->
+        GetSimilarMoviesUserCase(
             scope = scope,
             repository = get()
         )

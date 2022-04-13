@@ -1,5 +1,6 @@
 package com.example.data_remote.utils
 
+import com.example.data_remote.BuildConfig
 import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.Dispatcher
@@ -32,6 +33,20 @@ object WebServiceFactory {
         val retrofit = Retrofit.Builder()
             .baseUrl(url)
             .client(okHttpClient)
+            .client(
+                OkHttpClient.Builder()
+                    .addInterceptor { chain ->
+                        val url = chain
+                            .request()
+                            .url
+                            .newBuilder()
+                            .addQueryParameter(LANGUAGE_QUERY, LANGUAGE_QUERY_VALUE)
+                            .addQueryParameter(API_QUERY, BuildConfig.API_QUERY_VALUE)
+                            .build()
+                        chain.proceed(chain.request().newBuilder().url(url).build())
+                    }
+                    .build()
+            )
             .addConverterFactory(UnitConverterFactory)
             .addConverterFactory(gsonFactory)
             .addCallAdapterFactory(CoroutineCallAdapterFactory())

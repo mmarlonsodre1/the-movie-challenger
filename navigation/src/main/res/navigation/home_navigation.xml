@@ -7,8 +7,18 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.home_feature.home.HomeFragment"
+        android:name="com.example.home_feature.pages.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
 
+    <fragment
+        android:id="@+id/movieDetailFragment"
+        android:name="com.example.home_feature.pages.detail.MovieDetailFragment"
+        android:label="fragment_movie_detail"
+        tools:layout="@layout/fragment_movie_detail">
+        <argument
+            app:nullable="true"
+            android:name="model"
+            app:argType="com.example.base_feature.model.AppMovieDetailModel" />
+    </fragment>
 </navigation>
