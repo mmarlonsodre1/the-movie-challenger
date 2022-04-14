@@ -3,25 +3,25 @@ package com.example.domain.model.movie
 import com.example.domain.model.gender.GenderModel
 
 data class MovieDetailModel(
-    val adult: Boolean?,
-    val backdropPath: String?,
-    val budget: Int?,
-    val genres: List<GenderModel>,
-    val homepage: String?,
-    val id: Int?,
-    val imdbId: String?,
-    val originalLanguage: String?,
-    val originalTitle: String?,
-    val overview: String?,
-    val popularity: Double?,
-    val posterPath: String?,
-    val productionCompanies: List<ProductionCompanieModel>?,
-    val releaseDate: String?,
-    val revenue: Int?,
-    val runtime: Int?,
-    val title: String?,
-    val voteAverage: Double?,
-    val productionCountries: String?
+    val adult: Boolean? = null,
+    val backdropPath: String? = null,
+    val budget: Int? = null,
+    val genres: List<GenderModel>? = null,
+    val homepage: String? = null,
+    val id: Int? = null,
+    val imdbId: String? = null,
+    val originalLanguage: String? = null,
+    val originalTitle: String? = null,
+    val overview: String? = null,
+    val popularity: Double? = null,
+    val posterPath: String? = null,
+    val productionCompanies: List<ProductionCompanieModel>? = null,
+    val releaseDate: String? = null,
+    val revenue: Int? = null,
+    val runtime: Int? = null,
+    val title: String? = null,
+    val voteAverage: Double? = null,
+    val productionCountries: String? = null
 ) {
     fun genresString(): String? {
         if (genres.isNullOrEmpty()) return null
