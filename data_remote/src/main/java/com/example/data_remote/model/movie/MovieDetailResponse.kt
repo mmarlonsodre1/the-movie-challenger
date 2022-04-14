@@ -27,7 +27,8 @@ data class MovieDetailResponse(
     fun productionCountries(): String {
         var string = ""
         productionCountriesList?.forEach {
-            string = "$string, ${it.name}"
+            if (string.isBlank()) string = it.name ?: ""
+            else string = "$string, ${it.name}"
         }
         return string
     }

@@ -22,4 +22,19 @@ data class MovieDetailModel(
     val title: String?,
     val voteAverage: Double?,
     val productionCountries: String?
-)
+) {
+    fun genresString(): String? {
+        if (genres.isNullOrEmpty()) return null
+        if (genres?.size == 1) return genres.first().name
+
+        var string = ""
+        genres?.forEach { genderModel ->
+            genderModel.name?.let { name ->
+                string = if (string.isBlank()) name
+                    else "$string, $name"
+            }
+        }
+        string = string.trim()
+        return string
+    }
+}

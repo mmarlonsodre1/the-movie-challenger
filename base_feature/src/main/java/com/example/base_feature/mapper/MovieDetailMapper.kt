@@ -13,6 +13,28 @@ object AppMovieDetailMapper : BaseFeatureMapper<MovieDetailModel, AppMovieDetail
         adult = data.adult,
         backdropPath = data.backdropPath,
         budget = data.budget,
+        genres = listGenresToApp(data.genres),
+        homepage = data.homepage,
+        id = data.id,
+        imdbId = data.imdbId,
+        originalLanguage = data.originalLanguage,
+        originalTitle = data.originalTitle,
+        overview = data.overview,
+        popularity = data.popularity,
+        posterPath = data.posterPath,
+        productionCompanies = listProductionsToApp(data.productionCompanies),
+        releaseDate = data.releaseDate,
+        revenue = data.revenue,
+        runtime = data.runtime,
+        title = data.title,
+        voteAverage = data.voteAverage,
+        productionCountries = data.productionCountries
+    )
+
+    fun toDomainModel(data: AppMovieDetailModel) = MovieDetailModel(
+        adult = data.adult,
+        backdropPath = data.backdropPath,
+        budget = data.budget,
         genres = listGenresToDomain(data.genres),
         homepage = data.homepage,
         id = data.id,
@@ -31,7 +53,22 @@ object AppMovieDetailMapper : BaseFeatureMapper<MovieDetailModel, AppMovieDetail
         productionCountries = data.productionCountries
     )
 
-    private fun listProductionsToDomain(list: List<ProductionCompanieModel>?): List<AppProductionCompanieModel> {
+    private fun listProductionsToDomain(list: List<AppProductionCompanieModel>?): List<ProductionCompanieModel> {
+        val listResponse = mutableListOf<ProductionCompanieModel>()
+        list?.forEach {
+            listResponse.add(
+                ProductionCompanieModel(
+                    id = it.id,
+                    name = it.name,
+                    logoPath = it.logoPath,
+                    originCountry = it.originCountry
+                )
+            )
+        }
+        return listResponse.toList()
+    }
+
+    private fun listProductionsToApp(list: List<ProductionCompanieModel>?): List<AppProductionCompanieModel> {
         val listResponse = mutableListOf<AppProductionCompanieModel>()
         list?.forEach {
             listResponse.add(
@@ -46,11 +83,24 @@ object AppMovieDetailMapper : BaseFeatureMapper<MovieDetailModel, AppMovieDetail
         return listResponse.toList()
     }
 
-    private fun listGenresToDomain(list: List<GenderModel>?): List<AppGenderModel> {
+    private fun listGenresToApp(list: List<GenderModel>?): List<AppGenderModel> {
         val listResponse = mutableListOf<AppGenderModel>()
         list?.forEach {
             listResponse.add(
                 AppGenderModel(
+                    id = it.id,
+                    name = it.name
+                )
+            )
+        }
+        return listResponse.toList()
+    }
+
+    private fun listGenresToDomain(list: List<AppGenderModel>?): List<GenderModel> {
+        val listResponse = mutableListOf<GenderModel>()
+        list?.forEach {
+            listResponse.add(
+                GenderModel(
                     id = it.id,
                     name = it.name
                 )

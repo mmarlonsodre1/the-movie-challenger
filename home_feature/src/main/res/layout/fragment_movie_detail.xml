@@ -29,6 +29,7 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnBack"
             style="@style/BorderlessButton.Back"
+            android:layout_marginTop="24dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 

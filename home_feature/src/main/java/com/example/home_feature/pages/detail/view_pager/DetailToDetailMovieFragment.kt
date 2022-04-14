@@ -1,18 +1,13 @@
 package com.example.home_feature.pages.detail.view_pager
 
-import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.example.base_feature.core.BaseFragment
 import com.example.base_feature.model.AppMovieDetailModel
-import com.example.home_feature.R
+import com.example.domain.model.movie.MovieDetailModel
 import com.example.home_feature.databinding.FragmentDetailToDetailMovieBinding
-import com.example.home_feature.databinding.FragmentMovieDetailBinding
 
 class DetailToDetailMovieFragment(
-    val model: AppMovieDetailModel
+    var model: MovieDetailModel
 ) : BaseFragment<FragmentDetailToDetailMovieBinding>() {
 
     override fun onCreateViewBinding(inflater: LayoutInflater) =

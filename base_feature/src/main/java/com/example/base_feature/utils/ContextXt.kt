@@ -18,6 +18,15 @@ fun View.margin(left: Float? = null, top: Float? = null, right: Float? = null, b
     }
 }
 
+fun View.marginDP(safeOld: Boolean = false, left: Int? = null, top: Int? = null, right: Int? = null, bottom: Int? = null) {
+    layoutParams<ViewGroup.MarginLayoutParams> {
+        left?.run { leftMargin = if (safeOld) this + leftMargin else this}
+        top?.run { topMargin = if (safeOld) this + topMargin else this }
+        right?.run { rightMargin = if (safeOld) this + rightMargin else this }
+        bottom?.run { bottomMargin = if (safeOld) this + bottomMargin else this }
+    }
+}
+
 inline fun <reified T : ViewGroup.LayoutParams> View.layoutParams(block: T.() -> Unit) {
     if (layoutParams is T) block(layoutParams as T)
 }

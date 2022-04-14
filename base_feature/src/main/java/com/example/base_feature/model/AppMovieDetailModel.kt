@@ -24,17 +24,4 @@ data class AppMovieDetailModel(
     val title: String?,
     val voteAverage: Double?,
     val productionCountries: String?
-) : Parcelable {
-    fun genresString(): String? {
-        if (!genres.isNullOrEmpty()) return null
-        if (genres?.size == 1) return genres.first().name
-
-        var string = ""
-        genres?.forEach { genderModel ->
-            genderModel.name?.let { name ->
-                string = "$string, $name"
-            }
-        }
-        return string
-    }
-}
+) : Parcelable

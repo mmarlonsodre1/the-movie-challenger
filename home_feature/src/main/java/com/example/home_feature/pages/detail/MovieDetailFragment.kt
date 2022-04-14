@@ -7,12 +7,16 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.fragment.findNavController
 import com.example.base_feature.core.BaseFragment
+import com.example.base_feature.mapper.AppMovieDetailMapper
 import com.example.base_feature.model.AppMovieDetailModel
 import com.example.base_feature.utils.loadUrl
+import com.example.base_feature.utils.margin
+import com.example.base_feature.utils.marginDP
 import com.example.home_feature.databinding.FragmentMovieDetailBinding
 import com.example.home_feature.pages.detail.adaper.MovieDetailViewPagerAdapter
 import com.example.home_feature.pages.detail.view_pager.DetailToDetailMovieFragment
 import com.example.home_feature.pages.detail.view_pager.SimilarMoviesFragment
+import com.example.uikit.extensions.getTopSafeAreaPx
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>() {
@@ -21,6 +25,7 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>() {
     private var pagerAdapter: MovieDetailViewPagerAdapter? = null
     private val fragments = mutableListOf<Fragment>()
     private val tabs = mutableListOf<String>()
+    var detailFragment: DetailToDetailMovieFragment? = null
 
     override fun onCreateViewBinding(inflater: LayoutInflater) =
         FragmentMovieDetailBinding.inflate(inflater)
@@ -31,17 +36,25 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>() {
         val model = arguments?.getParcelable<AppMovieDetailModel>("model")
         model?.let { model ->
             viewModel.getSimilarMovies(model.id!!)
-            fragments.add(DetailToDetailMovieFragment(model))
+            viewModel.getMovieDetail(model.id!!)
+
+            detailFragment = DetailToDetailMovieFragment(AppMovieDetailMapper.toDomainModel(model))
+            fragments.add(detailFragment!!)
             pagerAdapter?.items = fragments.toList()
 
             with(binding){
-                btnBack.setOnClickListener {
-                    findNavController().navigateUp()
+                btnBack.apply {
+                    context?.getTopSafeAreaPx()?.let {
+                        top -> marginDP(safeOld = true, top = resources.getDimensionPixelSize(top))
+                    }
+
+                    setOnClickListener {
+                        findNavController().navigateUp()
+                    }
                 }
                 ivMovieBlur.loadUrl(model.posterPath, hasBlur = true)
                 ivMovie.loadUrl(model.posterPath)
                 tvTitle.text = model.title
-                tvGender.text = model.genresString()
                 tvDescription.text = model.overview
 
                 vpSimilars.adapter = pagerAdapter
@@ -72,9 +85,6 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>() {
                     }
                 }
             },
-            onError = {
-                print("error")
-            },
             onComplete = {
                 pagerAdapter?.items = fragments
                 binding.vpSimilars.adapter = pagerAdapter
@@ -82,6 +92,13 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>() {
                     tab.text = tabs[position]
                 }.attach()
             }
+        )
+
+        viewModel.movieDetailViewState.onPostValue(owner,
+            onSuccess = {
+                binding.tvGender.text = it.genresString()
+                detailFragment?.model = it
+            },
         )
     }
 
