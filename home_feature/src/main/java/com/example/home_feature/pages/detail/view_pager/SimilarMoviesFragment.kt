@@ -7,9 +7,7 @@ import com.example.base_feature.utils.navDirections
 import com.example.domain.model.movie.MovieDetailModel
 import com.example.home_feature.databinding.FragmentSimilarMoviesBinding
 import com.example.home_feature.navigation.HomeNavigation
-import com.example.home_feature.pages.detail.adaper.MovieDetailSimilarsAdapter
-import com.example.home_feature.pages.home.adapter.HomeFirstAdapter
-import com.example.home_feature.pages.home.adapter.HomeSecondAdapter
+import com.example.base_feature.adapters.MovieDetailSimilarsAdapter
 
 class SimilarMoviesFragment(
     private val movies: List<MovieDetailModel>

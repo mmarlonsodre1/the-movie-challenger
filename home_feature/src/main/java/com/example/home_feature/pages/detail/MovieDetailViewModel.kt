@@ -92,5 +92,6 @@ class MovieDetailViewModel : ViewModel(), KoinComponent {
 
     fun resetViewStates() {
         _similarMoviesViewState.postNeutral()
+        _movieDetailViewState.postNeutral()
     }
 }

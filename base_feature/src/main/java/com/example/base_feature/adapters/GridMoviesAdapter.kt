@@ -1,4 +1,4 @@
-package com.example.home_feature.pages.detail.adaper
+package com.example.base_feature.adapters
 
 import android.view.View
 import android.view.ViewGroup
@@ -7,7 +7,7 @@ import com.example.base_feature.utils.layoutInflater
 import com.example.base_feature.utils.loadUrl
 import com.example.base_feature.utils.margin
 import com.example.domain.model.movie.MovieDetailModel
-import com.example.home_feature.databinding.ItemHomeSecondListBinding
+import com.example.uikit.databinding.ItemHomeSecondListBinding
 
 class MovieDetailSimilarsAdapter(
     val items: List<MovieDetailModel>,

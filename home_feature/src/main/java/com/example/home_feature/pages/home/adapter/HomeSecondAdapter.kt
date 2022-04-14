@@ -6,7 +6,7 @@ import com.example.base_feature.utils.layoutInflater
 import com.example.base_feature.utils.loadUrl
 import com.example.base_feature.utils.margin
 import com.example.domain.model.movie.MovieDetailModel
-import com.example.home_feature.databinding.ItemHomeSecondListBinding
+import com.example.uikit.databinding.ItemHomeSecondListBinding
 
 class HomeSecondAdapter(
     private val onClick: ((MovieDetailModel) -> Unit)? = null,

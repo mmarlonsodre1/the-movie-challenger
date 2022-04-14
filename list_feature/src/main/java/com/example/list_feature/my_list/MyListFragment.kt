@@ -1,22 +1,38 @@
 package com.example.list_feature.my_list
 
-import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import com.example.list_feature.R
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.LifecycleOwner
+import com.example.base_feature.adapters.MovieDetailSimilarsAdapter
+import com.example.base_feature.core.BaseFragment
+import com.example.list_feature.databinding.FragmentMyListBinding
 
-class MyListFragment : Fragment() {
+class MyListFragment : BaseFragment<FragmentMyListBinding>() {
+    private val viewModel: MyListViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreateViewBinding(inflater: LayoutInflater) =
+        FragmentMyListBinding.inflate(inflater)
+
+    override fun setupView() {
+        super.setupView()
+        viewModel.getMovies()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_my_list, container, false)
+    override fun addObservers(owner: LifecycleOwner) {
+        super.addObservers(owner)
+        viewModel.moviesViewState.onPostValue(owner,
+            onSuccess = {
+                val adapter = MovieDetailSimilarsAdapter(
+                    items = it,
+                    onClick = {}
+                )
+                binding.gvMovies.adapter = adapter
+            }
+        )
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        viewModel.resetViewStates()
     }
 }
