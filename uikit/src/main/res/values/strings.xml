@@ -15,4 +15,8 @@
     <string name="director">Direção: </string>
     <string name="cast">Elenco: </string>
     <string name="date">Disponível até: </string>
+
+    <string name="play">Assista</string>
+    <string name="add_my_list">Add Lista</string>
+    <string name="remove_my_list">Remover</string>
 </resources>

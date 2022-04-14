@@ -1,9 +1,9 @@
-package com.example.domain.usecase.movie
+package com.example.domain.usecase.remote.movie
 
 import com.example.domain.core.UseCase
 import com.example.domain.exception.MissingParamsException
 import com.example.domain.model.movie.MovieDetailModel
-import com.example.domain.repository.MovieRepository
+import com.example.domain.repository.remote.MovieRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 

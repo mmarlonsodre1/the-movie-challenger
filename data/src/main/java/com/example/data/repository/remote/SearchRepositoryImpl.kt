@@ -1,8 +1,8 @@
-package com.example.data.repository
+package com.example.data.repository.remote
 
 import com.example.data.datasource.remote.SearchRemoteDataSource
 import com.example.domain.model.search.SearchModel
-import com.example.domain.repository.SearchRepository
+import com.example.domain.repository.remote.SearchRepository
 import kotlinx.coroutines.flow.Flow
 
 class SearchRepositoryImpl(

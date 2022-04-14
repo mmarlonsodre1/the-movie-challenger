@@ -1,8 +1,8 @@
-package com.example.domain.usecase.gender
+package com.example.domain.usecase.remote.gender
 
 import com.example.domain.core.UseCase
 import com.example.domain.model.gender.GenderListModel
-import com.example.domain.repository.GenderRepository
+import com.example.domain.repository.remote.GenderRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 

@@ -3,7 +3,6 @@ package com.example.data_local.utils
 import android.content.Context
 import android.os.Build
 import android.util.Base64
-import com.example.data_local.model.Storable
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
 import com.google.gson.reflect.TypeToken

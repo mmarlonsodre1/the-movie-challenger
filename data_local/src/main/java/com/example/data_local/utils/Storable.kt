@@ -1,4 +1,4 @@
-package com.example.data_local.model
+package com.example.data_local.utils
 
 /**
  * Container for everything needed for decrypting the database.

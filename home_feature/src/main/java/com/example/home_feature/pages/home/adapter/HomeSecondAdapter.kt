@@ -49,8 +49,8 @@ class HomeSecondAdapter(
                     com.example.uikit.R.string.post_description, model.title
                 )
                 margin(
-                    left = if (position == 0) 32F else 0F,
-                    right = if (position == itemCount - 1) 32F else 16F,
+                    left = if (position == 0) 24F else 0F,
+                    right = if (position == itemCount - 1) 24F else 16F,
                 )
             }
         }

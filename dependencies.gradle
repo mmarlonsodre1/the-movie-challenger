@@ -37,7 +37,8 @@ ext {
             [configuration: "implementation", dependency: "$retrofitCoroutine"],
             [configuration: "implementation", dependency: "$httpInterceptor"],
             [configuration: "implementation", dependency: "$gsonConvertFacotory"],
-            [configuration: "implementation", dependency: "$room"]
+            [configuration: "implementation", dependency: "$room"],
+            [configuration: "implementation", dependency: "$sqlCipher"],
     ]
 
     presentationDependencies = commonsDependencies + testPresentationDependencies + [

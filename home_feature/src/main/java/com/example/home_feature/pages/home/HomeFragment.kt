@@ -43,9 +43,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 it.second.results?.let { movies ->
                     updateItems(HomeItemModel(it.first.title, movies))
                 }
-            },
-            onError = {
-                print("erorr")
             }
         )
     }

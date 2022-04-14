@@ -1,10 +1,9 @@
-package com.example.data.repository
+package com.example.data.repository.remote
 
 import com.example.data.datasource.remote.MovieRemoteDataSource
 import com.example.domain.model.movie.MovieDetailModel
-import com.example.domain.model.movie.MovieListModel
 import com.example.domain.model.search.SearchModel
-import com.example.domain.repository.MovieRepository
+import com.example.domain.repository.remote.MovieRepository
 import kotlinx.coroutines.flow.Flow
 
 class MovieRepositoryImpl(

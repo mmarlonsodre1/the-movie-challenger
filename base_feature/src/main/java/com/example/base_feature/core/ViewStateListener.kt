@@ -19,8 +19,6 @@ interface ViewStateListener {
         onLoading: (() -> Unit)? = null,
         onComplete: (() -> Unit)? = null,
         onSuccess: ((T) -> Unit)? = null,
-        errorBottomSheetAction: (() -> Unit)? = null,
-        showDataSourceException: Boolean = true
     ) {
 
         stateHandler(
@@ -31,20 +29,6 @@ interface ViewStateListener {
             },
             onError = { error ->
                 hideLoading()
-//                when (error) {
-//                    is UnauthorizedException -> {
-//                        handleWithUnauthorized(error)
-//                        return@stateHandler
-//                    }
-//                    is DataSourceException -> {
-//                        if (showDataSourceException)
-//                            handlePresentationException(error, errorBottomSheetAction)
-//                    }
-//                    is UnknownHostException, is ConnectException -> {
-//                        handleNoNetworkConnectionException(errorBottomSheetAction)
-//                        return@stateHandler
-//                    }
-//                }
                 onError?.invoke(error) ?: onStateError(error)
                 onComplete?.invoke()
             },
@@ -62,7 +46,7 @@ interface ViewStateListener {
         showDataSourceException: Boolean = true
     ) {
         observeLiveData(lifecycleOwner) {
-            it.handle(onError, onLoading, onComplete, onSuccess, errorBottomSheetAction, showDataSourceException)
+            it.handle(onError, onLoading, onComplete, onSuccess)
         }
     }
 

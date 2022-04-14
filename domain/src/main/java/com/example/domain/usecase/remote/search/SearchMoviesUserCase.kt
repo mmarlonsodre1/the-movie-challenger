@@ -1,9 +1,9 @@
-package com.example.domain.usecase.search
+package com.example.domain.usecase.remote.search
 
 import com.example.domain.core.UseCase
 import com.example.domain.exception.MissingParamsException
 import com.example.domain.model.search.SearchModel
-import com.example.domain.repository.SearchRepository
+import com.example.domain.repository.remote.SearchRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 

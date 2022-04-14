@@ -6,7 +6,7 @@ import com.example.base_feature.core.*
 import com.example.base_feature.utils.useCase
 import com.example.base_feature.utils.viewState
 import com.example.domain.model.search.SearchModel
-import com.example.domain.usecase.movie.GetMoviesUserCase
+import com.example.domain.usecase.remote.movie.GetMoviesUserCase
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.core.KoinComponent

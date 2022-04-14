@@ -12,6 +12,7 @@ import com.example.base_feature.model.AppMovieDetailModel
 import com.example.base_feature.utils.loadUrl
 import com.example.base_feature.utils.margin
 import com.example.base_feature.utils.marginDP
+import com.example.home_feature.R
 import com.example.home_feature.databinding.FragmentMovieDetailBinding
 import com.example.home_feature.pages.detail.adaper.MovieDetailViewPagerAdapter
 import com.example.home_feature.pages.detail.view_pager.DetailToDetailMovieFragment
@@ -39,39 +40,54 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>() {
             viewModel.getMovieDetail(model.id!!)
 
             detailFragment = DetailToDetailMovieFragment(AppMovieDetailMapper.toDomainModel(model))
-            fragments.add(detailFragment!!)
+            if (fragments.isEmpty()) fragments.add(detailFragment!!)
             pagerAdapter?.items = fragments.toList()
 
-            with(binding){
-                btnBack.apply {
-                    context?.getTopSafeAreaPx()?.let {
-                        top -> marginDP(safeOld = true, top = resources.getDimensionPixelSize(top))
-                    }
+            inflateView(model)
+        }
+        if (tabs.isEmpty()) tabs.add(getString(com.example.uikit.R.string.details))
 
-                    setOnClickListener {
-                        findNavController().navigateUp()
-                    }
-                }
-                ivMovieBlur.loadUrl(model.posterPath, hasBlur = true)
-                ivMovie.loadUrl(model.posterPath)
-                tvTitle.text = model.title
-                tvDescription.text = model.overview
+        context?.getTopSafeAreaPx()?.let {
+            top -> binding.btnBack.marginDP(safeOld = true, top = resources.getDimensionPixelSize(top))
+        }
+    }
 
-                vpSimilars.adapter = pagerAdapter
-                vpSimilars.setPageTransformer { page, _ ->
+    private fun setListeners(hasLocal: Boolean = false) {
+        with(binding){
+            btnBack.setOnClickListener {
+                findNavController().navigateUp()
+            }
+            btMyList.setOnClickListener {
+                if (hasLocal) viewModel.removeMovie() else viewModel.addMovie()
+            }
+        }
+    }
+
+    private fun inflateView(model: AppMovieDetailModel, hasLocal: Boolean = false) {
+        with(binding) {
+            ivMovieBlur.loadUrl(model.posterPath, hasBlur = true)
+            ivMovie.loadUrl(model.posterPath)
+            tvTitle.text = model.title
+            tvDescription.text = model.overview
+            btMyList.text = if (hasLocal) getString(com.example.uikit.R.string.remove_my_list)
+                                else getString(com.example.uikit.R.string.add_my_list)
+
+            vpSimilars.apply {
+                adapter = pagerAdapter
+                setPageTransformer { page, _ ->
                     val wMeasureSpec =
                         View.MeasureSpec.makeMeasureSpec(page.width, View.MeasureSpec.EXACTLY)
                     val hMeasureSpec =
                         View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
                     page.measure(wMeasureSpec, hMeasureSpec)
-                    vpSimilars.measure(wMeasureSpec, hMeasureSpec)
-                    vpSimilars.post {
-                        vpSimilars.adapter?.notifyDataSetChanged()
+                    measure(wMeasureSpec, hMeasureSpec)
+                    post {
+                        adapter?.notifyDataSetChanged()
                     }
                 }
             }
         }
-        tabs.add(getString(com.example.uikit.R.string.details))
+        setListeners(hasLocal)
     }
 
     override fun addObservers(owner: LifecycleOwner) {
@@ -80,8 +96,10 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>() {
             onSuccess = {
                 it.results?.let { movies ->
                     if (movies.isNotEmpty()) {
-                        tabs.add(0, getString(com.example.uikit.R.string.similar_movies))
-                        fragments.add(0, SimilarMoviesFragment(movies))
+                        if (tabs.size == 1) {
+                            tabs.add(0, getString(com.example.uikit.R.string.similar_movies))
+                            fragments.add(0, SimilarMoviesFragment(movies))
+                        }
                     }
                 }
             },
@@ -96,8 +114,9 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>() {
 
         viewModel.movieDetailViewState.onPostValue(owner,
             onSuccess = {
-                binding.tvGender.text = it.genresString()
-                detailFragment?.model = it
+                inflateView(AppMovieDetailMapper.toAppModel(it.first), it.second)
+                binding.tvGender.text = it.first.genresString()
+                detailFragment?.model = it.first
             },
         )
     }

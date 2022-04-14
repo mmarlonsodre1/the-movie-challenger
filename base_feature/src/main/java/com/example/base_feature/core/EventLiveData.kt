@@ -21,28 +21,6 @@ class EventLiveData<T> : MutableLiveData<T>() {
     fun getContent(isSingleEvent: Boolean) = if (isSingleEvent) getContentIfNotHandled() else value
 }
 
-fun <T> Flow<T>.asLiveData(): LiveData<ViewState<out T>> = liveData {
-    try {
-        collect {
-            emit(
-                ViewState(
-                    ViewState.Status.SUCCESS,
-                    it,
-                    null
-                )
-            )
-        }
-    } catch (e: Exception) {
-        emit(
-            ViewState(
-                ViewState.Status.ERROR,
-                null,
-                e
-            )
-        )
-    }
-}
-
 fun <T> MutableLiveData<T>.asLiveData(): LiveData<T> = this
 
 fun <T> MutableLiveData<ViewState<T>>.postSuccess(data: T) {
