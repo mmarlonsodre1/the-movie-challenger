@@ -17,8 +17,8 @@ class BaseApplication : Application() {
         AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES)
         startKoin {
             modules(
-                navigationModule +
-                listOf(
+                    listOf(
+                    navigationModule,
                     presentationModule,
                     domainModule,
                     dataModule,

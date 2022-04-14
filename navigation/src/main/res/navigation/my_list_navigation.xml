@@ -10,4 +10,15 @@
         android:name="com.example.list_feature.my_list.MyListFragment"
         android:label="fragment_my_list"
         tools:layout="@layout/fragment_my_list" />
+
+    <fragment
+        android:id="@+id/movieDetailFragment"
+        android:name="com.example.home_feature.pages.detail.MovieDetailFragment"
+        android:label="fragment_movie_detail"
+        tools:layout="@layout/fragment_movie_detail">
+        <argument
+            app:nullable="true"
+            android:name="model"
+            app:argType="com.example.base_feature.model.AppMovieDetailModel" />
+    </fragment>
 </navigation>
