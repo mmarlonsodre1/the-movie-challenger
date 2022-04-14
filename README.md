@@ -16,4 +16,4 @@ Como rodar o projeto:
 * Favoritar/Desfavoritar filmes;
 * Layout estruturado;
 * Tratamento de erro.
-* Teste unitário e de view
+* Teste unitário e instrumentado
