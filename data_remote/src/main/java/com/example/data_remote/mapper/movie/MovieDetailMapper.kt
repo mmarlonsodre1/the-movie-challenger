@@ -27,7 +27,8 @@ object MovieDetailMapper : DataRemoteMapper<MovieDetailResponse, MovieDetailMode
         revenue = data.revenue,
         runtime = data.runtime,
         title = data.title,
-        voteAverage = data.voteAverage
+        voteAverage = data.voteAverage,
+        productionCountries = data.productionCountries()
     )
 
     private fun listToDomain(list: List<ProductionCompanieResponse>?): List<ProductionCompanieModel> {

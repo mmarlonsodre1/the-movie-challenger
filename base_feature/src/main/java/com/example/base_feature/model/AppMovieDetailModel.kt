@@ -22,7 +22,8 @@ data class AppMovieDetailModel(
     val revenue: Int?,
     val runtime: Int?,
     val title: String?,
-    val voteAverage: Double?
+    val voteAverage: Double?,
+    val productionCountries: String?
 ) : Parcelable {
     fun genresString(): String? {
         if (!genres.isNullOrEmpty()) return null

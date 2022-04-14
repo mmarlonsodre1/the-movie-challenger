@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:background="@color/black"
+    android:background="@color/grey_darkest"
+    android:paddingBottom="32dp"
     tools:context=".pages.detail.view_pager.DetailToDetailMovieFragment">
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -105,68 +106,5 @@
         app:layout_constraintStart_toEndOf="@+id/tvCountrieStatic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvYear" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvDirectorStatic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="24dp"
-        android:textColor="@color/grey_dark"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvCountrie"
-        android:text="@string/director" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvDirector"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:textColor="@color/grey_dark"
-        app:layout_constraintStart_toEndOf="@+id/tvDirectorStatic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvCountrie" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvCastStatic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="24dp"
-        android:textColor="@color/grey_dark"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvDirector"
-        android:text="@string/cast" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvCast"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:textColor="@color/grey_dark"
-        app:layout_constraintStart_toEndOf="@+id/tvCastStatic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvDirector" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvDateStatic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="24dp"
-        android:textColor="@color/grey_dark"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvCast"
-        android:text="@string/date" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvDate"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:textColor="@color/grey_dark"
-        app:layout_constraintStart_toEndOf="@+id/tvDateStatic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvCast" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

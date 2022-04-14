@@ -7,7 +7,7 @@ import com.example.domain.model.movie.MovieDetailModel
 import com.example.home_feature.databinding.ItemHomeFirstListBinding
 
 class HomeFirstAdapter(
-    private val onClick: (MovieDetailModel) -> Unit,
+    private val onClick: ((MovieDetailModel) -> Unit)? = null,
 ) : RecyclerView.Adapter<HomeFirstAdapter.HomeFirstAdapterViewHolder>() {
 
     var items = emptyList<HomeItemModel>()
@@ -37,7 +37,7 @@ class HomeFirstAdapter(
 
     inner class HomeFirstAdapterViewHolder(private val binding: ItemHomeFirstListBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(model: HomeItemModel, onClick: (MovieDetailModel) -> Unit) {
+        fun bind(model: HomeItemModel, onClick: ((MovieDetailModel) -> Unit)?) {
             binding.tvTitle.text = model.gender
 
             val adapter = HomeSecondAdapter(onClick = onClick)

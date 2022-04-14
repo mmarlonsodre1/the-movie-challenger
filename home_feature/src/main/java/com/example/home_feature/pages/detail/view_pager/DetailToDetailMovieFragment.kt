@@ -5,15 +5,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.base_feature.core.BaseFragment
+import com.example.base_feature.model.AppMovieDetailModel
 import com.example.home_feature.R
+import com.example.home_feature.databinding.FragmentDetailToDetailMovieBinding
+import com.example.home_feature.databinding.FragmentMovieDetailBinding
 
-class DetailToDetailMovieFragment : Fragment() {
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detail_to_detail_movie, container, false)
+class DetailToDetailMovieFragment(
+    val model: AppMovieDetailModel
+) : BaseFragment<FragmentDetailToDetailMovieBinding>() {
+
+    override fun onCreateViewBinding(inflater: LayoutInflater) =
+        FragmentDetailToDetailMovieBinding.inflate(inflater)
+
+    override fun setupView() {
+        super.setupView()
+        with(binding) {
+            tvOriginalTitle.text = model.originalTitle
+            tvGender.text = model.genresString()
+            tvYear.text = model.releaseDate
+            tvCountrie.text = model.productionCountries
+        }
     }
-
 }

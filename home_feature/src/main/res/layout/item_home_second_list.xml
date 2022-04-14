@@ -7,8 +7,9 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivMovie"
-        android:layout_width="150dp"
-        android:layout_height="200dp"
+        android:layout_width="wrap_content"
+        android:layout_height="180dp"
+        android:scaleType="fitXY"
         tools:background="@drawable/not_image"
         android:contentDescription="@string/post_description" />
 

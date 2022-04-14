@@ -19,6 +19,7 @@ ext {
             [configuration: "implementation", dependency: "$material"],
             [configuration: "implementation", dependency: "$glide"],
             [configuration: "annotationProcessor", dependency: "$glideAnnotation"],
+            [configuration: "implementation", dependency: "$blur"],
     ]
 
     intentDependencies = appDependencies + [

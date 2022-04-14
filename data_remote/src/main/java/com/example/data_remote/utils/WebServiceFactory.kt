@@ -33,20 +33,6 @@ object WebServiceFactory {
         val retrofit = Retrofit.Builder()
             .baseUrl(url)
             .client(okHttpClient)
-            .client(
-                OkHttpClient.Builder()
-                    .addInterceptor { chain ->
-                        val url = chain
-                            .request()
-                            .url
-                            .newBuilder()
-                            .addQueryParameter(LANGUAGE_QUERY, LANGUAGE_QUERY_VALUE)
-                            .addQueryParameter(API_QUERY, BuildConfig.API_QUERY_VALUE)
-                            .build()
-                        chain.proceed(chain.request().newBuilder().url(url).build())
-                    }
-                    .build()
-            )
             .addConverterFactory(UnitConverterFactory)
             .addConverterFactory(gsonFactory)
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
@@ -63,6 +49,16 @@ object WebServiceFactory {
             .connectTimeout(TIMEOUT_DURATION_SECONDS, TimeUnit.SECONDS)
             .readTimeout(TIMEOUT_DURATION_SECONDS, TimeUnit.SECONDS)
             .writeTimeout(TIMEOUT_DURATION_SECONDS, TimeUnit.SECONDS)
+            .addInterceptor { chain ->
+                val url = chain
+                    .request()
+                    .url
+                    .newBuilder()
+                    .addQueryParameter(LANGUAGE_QUERY, LANGUAGE_QUERY_VALUE)
+                    .addQueryParameter(API_QUERY, BuildConfig.API_QUERY_VALUE)
+                    .build()
+                chain.proceed(chain.request().newBuilder().url(url).build())
+            }
             .build()
 
     private fun OkHttpClient.Builder.httpLoggingInterceptor(wasDebugVersion: Boolean) =

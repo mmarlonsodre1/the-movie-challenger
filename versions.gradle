@@ -16,6 +16,7 @@ ext {
 
     // Glide
     glideVersion = "4.13.0"
+    blurVersion = "4.3.0"
 
     //androidx lifecycle
     lifecycleVersion = "2.4.0"

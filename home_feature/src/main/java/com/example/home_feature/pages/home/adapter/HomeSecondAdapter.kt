@@ -9,7 +9,7 @@ import com.example.domain.model.movie.MovieDetailModel
 import com.example.home_feature.databinding.ItemHomeSecondListBinding
 
 class HomeSecondAdapter(
-    private val onClick: (MovieDetailModel) -> Unit,
+    private val onClick: ((MovieDetailModel) -> Unit)? = null,
 ) : RecyclerView.Adapter<HomeSecondAdapter.HomeSecondAdapterViewHolder>() {
 
     var items = emptyList<MovieDetailModel>()
@@ -35,7 +35,7 @@ class HomeSecondAdapter(
         items[position].let { model ->
             holder.bind(model, position)
             holder.itemView.setOnClickListener {
-                onClick.invoke(model)
+                onClick?.invoke(model)
             }
         }
     }

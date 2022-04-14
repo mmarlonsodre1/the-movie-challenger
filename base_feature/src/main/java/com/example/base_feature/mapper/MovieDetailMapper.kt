@@ -27,7 +27,8 @@ object AppMovieDetailMapper : BaseFeatureMapper<MovieDetailModel, AppMovieDetail
         revenue = data.revenue,
         runtime = data.runtime,
         title = data.title,
-        voteAverage = data.voteAverage
+        voteAverage = data.voteAverage,
+        productionCountries = data.productionCountries
     )
 
     private fun listProductionsToDomain(list: List<ProductionCompanieModel>?): List<AppProductionCompanieModel> {
