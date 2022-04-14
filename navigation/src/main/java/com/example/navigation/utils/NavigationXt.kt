@@ -1,10 +1,10 @@
 package com.example.navigation.utils
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.SparseArray
 import androidx.annotation.IdRes
 import androidx.core.util.forEach
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.LiveData
@@ -13,14 +13,6 @@ import androidx.navigation.*
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import org.koin.android.ext.android.inject
-import org.koin.core.parameter.parametersOf
-
-fun NavController.safeNavigateUp() = try {
-    navigateUp()
-} catch (e: Exception) {
-    false
-}
 
 fun NavController.safePopBackStack(@IdRes destination: Int, popUpInclusive: Boolean) = try {
     popBackStack(destination, popUpInclusive)
@@ -124,7 +116,7 @@ fun BottomNavigationView.setupWithNavController(
         graphIdToTagMap[graphId] = fragmentTag
 
         if (this.selectedItemId == graphId) {
-            selectedNavController.value = navHostFragment.navController
+            selectedNavController.value = navHostFragment.navController.destinationListener(this)
             attachNavHostFragment(fragmentManager, navHostFragment, index == 0)
         } else {
             detachNavHostFragment(fragmentManager, navHostFragment)
@@ -168,7 +160,7 @@ fun BottomNavigationView.setupWithNavController(
                 }
                 selectedItemTag = newlySelectedItemTag
                 isOnFirstFragment = selectedItemTag == firstFragmentTag
-                selectedNavController.value = selectedFragment.navController
+                selectedNavController.value = selectedFragment.navController.destinationListener(this)
                 attachNavHostFragment(fragmentManager, selectedFragment, true)
                 true
             } else {
@@ -194,27 +186,12 @@ fun BottomNavigationView.setupWithNavController(
     return selectedNavController
 }
 
-private fun BottomNavigationView.setupDeepLinks(
-    navGraphIds: List<Int>,
-    fragmentManager: FragmentManager,
-    containerId: Int,
-    intent: Intent
-): Boolean {
-    var hasDeepLink = false
-    navGraphIds.forEachIndexed { index, navGraphId ->
-        val fragmentTag = getFragmentTag(index)
-        val navHostFragment = obtainNavHostFragment(
-            fragmentManager,
-            fragmentTag,
-            navGraphId,
-            containerId
-        )
-        if (navHostFragment.navController.handleDeepLink(intent)) {
-            hasDeepLink = true
-            this.selectedItemId = navHostFragment.navController.graph.id
+private fun NavController.destinationListener(view: BottomNavigationView): NavController {
+    return apply {
+        addOnDestinationChangedListener { _, destination, arguments ->
+            view.isVisible = arguments?.getBoolean("ShowBottomNavigation", false) == true
         }
     }
-    return hasDeepLink
 }
 
 private fun FragmentManager.isOnBackStack(backStackName: String): Boolean {
