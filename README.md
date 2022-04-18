@@ -10,10 +10,11 @@ Como rodar o projeto:
 
 
 # Items
-* Listagem dos filmes;
-* Minha lista;
-* Detalhes do filme;
-* Favoritar/Desfavoritar filmes;
-* Layout estruturado;
+* Listagem dos filmes.
+* Minha lista.
+* Detalhes do filme.
+* Favoritar/Desfavoritar filmes.
+* Layout estruturado.
 * Tratamento de erro.
-* Teste unitário e instrumentado (em desenvolvimento)
+* Teste unitário nos módulos necessários.
+* Teste de Ui presente no módulo `app`.
