@@ -24,6 +24,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override fun setupView() {
         super.setupView()
         binding.rvGenders.adapter = adapter
+        viewModel.getGenders()
     }
 
     private fun updateItems(column: HomeItemModel) {
@@ -43,6 +44,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 it.second.results?.let { movies ->
                     updateItems(HomeItemModel(it.first.title, movies))
                 }
+            },
+            onComplete = {
+                viewModel.getGenders()
             }
         )
     }

@@ -13,4 +13,5 @@ dependencies {
 
     appDependencies.each { add(it.configuration, it.dependency, it.options) }
     intentDependencies.each { add(it.configuration, it.dependency) }
+    androidTestCommonsDependencies.forEach { add(it.configuration, it.dependency, it.option) }
 }

@@ -13,21 +13,18 @@ abstract class UseCase<T, in Params>(private val scope: CoroutineScope): KoinCom
     operator fun invoke(
         params: Params? = null,
         onError: ((Throwable) -> Unit) = {},
-        onSuccess: (T) -> Unit = {},
-        onCompleted: () -> Unit = {}
+        onSuccess: (T) -> Unit = {}
     ) {
         scope.launch(contextProvider.io) {
             try {
                 run(params).collect {
                     withContext(contextProvider.main) {
                         onSuccess(it)
-                        onCompleted()
                     }
                 }
             } catch (e: Exception) {
                 withContext(contextProvider.main) {
                     onError(e)
-                    onCompleted()
                 }
             }
         }
