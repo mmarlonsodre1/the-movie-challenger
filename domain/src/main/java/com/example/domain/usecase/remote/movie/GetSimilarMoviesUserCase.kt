@@ -12,7 +12,6 @@ class GetSimilarMoviesUserCase(
     private val repository: MovieRepository
 ) : UseCase<SearchModel, GetSimilarMoviesUserCase.Params>(scope) {
 
-
     override fun run(params: Params?): Flow<SearchModel> = when (params) {
         null -> throw MissingParamsException()
         else -> repository.getSimilarMovies(params.movieId)

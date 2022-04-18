@@ -12,7 +12,6 @@ class SearchMoviesUserCase(
     private val repository: SearchRepository
 ) : UseCase<SearchModel, SearchMoviesUserCase.Params>(scope) {
 
-
     override fun run(params: Params?): Flow<SearchModel> = when (params) {
         null -> throw MissingParamsException()
         else -> repository.getSearch(params.query)

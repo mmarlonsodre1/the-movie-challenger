@@ -12,7 +12,6 @@ class GetMovieDetailUserCase(
     private val repository: MovieRepository
 ) : UseCase<MovieDetailModel, GetMovieDetailUserCase.Params>(scope) {
 
-
     override fun run(params: Params?): Flow<MovieDetailModel> = when (params) {
         null -> throw MissingParamsException()
         else -> repository.getMovieDetail(params.movieId)

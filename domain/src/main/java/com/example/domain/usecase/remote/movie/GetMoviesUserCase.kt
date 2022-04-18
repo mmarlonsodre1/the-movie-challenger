@@ -12,7 +12,6 @@ class GetMoviesUserCase(
     private val repository: MovieRepository
 ) : UseCase<SearchModel, GetMoviesUserCase.Params>(scope) {
 
-
     override fun run(params: Params?): Flow<SearchModel> = when (params) {
         null -> throw MissingParamsException()
         else -> when(params.enum) {
