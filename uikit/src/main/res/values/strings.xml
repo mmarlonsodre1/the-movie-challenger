@@ -19,4 +19,7 @@
     <string name="play">Assista</string>
     <string name="add_my_list">Add Lista</string>
     <string name="remove_my_list">Remover</string>
+
+    <string name="title_error">Ocorreu um erro!</string>
+    <string name="description_error">Erro incomum!</string>
 </resources>

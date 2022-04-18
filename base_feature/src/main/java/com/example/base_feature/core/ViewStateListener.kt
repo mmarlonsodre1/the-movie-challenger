@@ -12,15 +12,10 @@ interface ViewStateListener {
 
     fun hideLoading()
 
-    fun handleError(error: Throwable)
-
     private fun <T> ViewState<T>.handle(
-        onError: ((Throwable) -> Unit)? = null,
-        onLoading: (() -> Unit)? = null,
         onComplete: (() -> Unit)? = null,
         onSuccess: ((T) -> Unit)? = null,
     ) {
-
         stateHandler(
             onSuccess = {
                 hideLoading()
@@ -29,25 +24,20 @@ interface ViewStateListener {
             },
             onError = { error ->
                 hideLoading()
-                onError?.invoke(error) ?: onStateError(error)
+                onStateError(error)
                 onComplete?.invoke()
             },
-            loading = { onLoading?.invoke() ?: onStateLoading() }
+            loading = { onStateLoading() }
         )
     }
 
     fun <T> LiveData<ViewState<T>>.onPostValue(
         lifecycleOwner: LifecycleOwner,
-        onError: ((Throwable) -> Unit)? = null,
         onComplete: (() -> Unit)? = null,
-        onLoading: (() -> Unit)? = null,
-        onSuccess: ((T) -> Unit)? = null,
-        errorBottomSheetAction: (() -> Unit)? = null,
-        showDataSourceException: Boolean = true
+        onSuccess: ((T) -> Unit)? = null
     ) {
         observeLiveData(lifecycleOwner) {
-            it.handle(onError, onLoading, onComplete, onSuccess)
+            it.handle(onComplete, onSuccess)
         }
     }
-
 }
