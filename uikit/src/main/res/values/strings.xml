@@ -2,6 +2,7 @@
     <string name="app_name">globoplay</string>
     <string name="home">Início</string>
     <string name="my_list">Minha lista</string>
+    <string name="my_list_empty">Lista vazia</string>
     <string name="post_description">Imagem poster do filme %s</string>
     <string name="back_button_description">Botão para voltar para a tela anterior</string>
     <string name="details">DETALHES</string>

@@ -1,6 +1,7 @@
 package com.example.list_feature.my_list
 
 import android.view.LayoutInflater
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LifecycleOwner
 import com.example.base_feature.adapters.MovieDetailSimilarsAdapter
@@ -26,13 +27,17 @@ class MyListFragment : BaseFragment<FragmentMyListBinding>() {
         super.addObservers(owner)
         viewModel.moviesViewState.onPostValue(owner,
             onSuccess = {
-                val adapter = MovieDetailSimilarsAdapter(
-                    items = it,
-                    onClick = { movie ->
-                        navigation.goToMovieDetail(AppMovieDetailMapper.toAppModel(movie))
-                    }
-                )
-                binding.gvMovies.adapter = adapter
+                if (it.isNotEmpty()) {
+                    binding.tvEmpty.isVisible = false
+                    binding.gvMovies.isVisible = true
+                    val adapter = MovieDetailSimilarsAdapter(
+                        items = it,
+                        onClick = { movie ->
+                            navigation.goToMovieDetail(AppMovieDetailMapper.toAppModel(movie))
+                        }
+                    )
+                    binding.gvMovies.adapter = adapter
+                }
             }
         )
     }
