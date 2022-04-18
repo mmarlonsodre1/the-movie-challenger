@@ -1,7 +1,6 @@
 package com.example.data_remote.service
 
 import com.example.data_remote.model.movie.MovieDetailResponse
-import com.example.data_remote.model.movie.MovieListResponse
 import com.example.data_remote.model.search.SearchResponse
 import com.example.data_remote.service.MovieWebService.Constants.MOVIE_DETAIL
 import com.example.data_remote.service.MovieWebService.Constants.MOVIE_ID
@@ -10,7 +9,6 @@ import com.example.data_remote.service.MovieWebService.Constants.MOVIE_TOP
 import com.example.data_remote.service.MovieWebService.Constants.MOVIE_TRENDING
 import com.example.data_remote.service.MovieWebService.Constants.MOVIE_UPCOMING
 import com.example.data_remote.service.MovieWebService.Constants.SIMILAR_MOVIES
-import com.example.domain.model.search.SearchModel
 import retrofit2.http.GET
 import retrofit2.http.Path
 

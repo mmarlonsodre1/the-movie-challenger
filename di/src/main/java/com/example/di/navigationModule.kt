@@ -1,4 +1,4 @@
-package com.example.di.navigation
+package com.example.di
 
 import androidx.fragment.app.Fragment
 import com.example.home_feature.navigation.HomeNavigation

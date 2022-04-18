@@ -2,7 +2,7 @@ package com.example.data_remote.service
 
 import com.example.data_remote.model.gender.GenderListResponse
 import com.example.data_remote.service.GenderWebService.Constants.GENDER_LIST
-import retrofit2.http.*
+import retrofit2.http.GET
 
 interface GenderWebService {
 

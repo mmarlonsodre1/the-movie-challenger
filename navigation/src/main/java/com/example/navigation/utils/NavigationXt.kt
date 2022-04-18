@@ -9,17 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.navigation.*
+import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
-
-fun NavController.safePopBackStack(@IdRes destination: Int, popUpInclusive: Boolean) = try {
-    popBackStack(destination, popUpInclusive)
-} catch (e: Exception) {
-    e.printStackTrace()
-    false
-}
 
 fun NavController.safeNavigate(
     @IdRes resId: Int,
@@ -30,9 +24,6 @@ fun NavController.safeNavigate(
 } catch (e: Exception) {
     e.printStackTrace()
 }
-
-fun Fragment.popBackStack(@IdRes destination: Int, popUpInclusive: Boolean = false) =
-    findNavController().safePopBackStack(destination, popUpInclusive)
 
 fun Fragment.navigate(@IdRes resId: Int, args: Bundle? = null, navOptions: NavOptions? = null) =
     findNavController().safeNavigate(resId, args, navOptions)

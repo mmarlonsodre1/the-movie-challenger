@@ -2,7 +2,6 @@ package com.example.home_feature.pages.detail.view_pager
 
 import android.view.LayoutInflater
 import com.example.base_feature.core.BaseFragment
-import com.example.base_feature.model.AppMovieDetailModel
 import com.example.domain.model.movie.MovieDetailModel
 import com.example.home_feature.databinding.FragmentDetailToDetailMovieBinding
 
