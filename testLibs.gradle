@@ -12,6 +12,8 @@ ext {
     androidJunitVersion = "1.1.2"
     androidCoreTestVersion = "1.4.0"
     arch_version = "2.1.0"
+    espressoVersion = "3.1.0"
+    fragmentVersion = "1.4.1"
 
     //androidTestImplementation libs
     androidTestRules = "androidx.test:rules:$androidTestRulesVersion"
@@ -32,4 +34,6 @@ ext {
     mockk = "io.mockk:mockk:$mockkVersion"
     arch = "androidx.arch.core:core-testing:$arch_version"
 
+    espresso = "androidx.test.espresso:espresso-core:$espressoVersion"
+    fragmentTest = "androidx.fragment:fragment-testing:$fragmentVersion"
 }

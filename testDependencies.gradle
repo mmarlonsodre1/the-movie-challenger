@@ -13,7 +13,10 @@ ext {
             [configuration: "androidTestImplementation", dependency: "$androidTestRunner"],
             [configuration: "androidTestImplementation", dependency: "$androidCoreTest"],
             [configuration: "androidTestImplementation", dependency: "$coreTesting"],
-            [configuration: "androidTestImplementation", dependency: "$arch"]
+            [configuration: "androidTestImplementation", dependency: "$arch"],
+            [configuration: "androidTestImplementation", dependency: "$espresso"],
+            [configuration: "androidTestImplementation", dependency: "$androidTestRules"],
+            [configuration: "debugImplementation", dependency: "$fragmentTest"],
     ]
 
     testAppDependencies = testCommonsDependencies + [
