@@ -37,8 +37,6 @@ ext {
     // Database
     roomVersion = "2.2.5"
 
-    // Security
-    guavaVersion = "27.0.1-android"
     sqlCipherVersion = "4.4.0"
     sqliteVersion = "2.1.0"
     securityCryptoVersion = "1.0.0"

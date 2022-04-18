@@ -14,24 +14,22 @@ class HomeViewModel : ViewModel(), KoinComponent {
     private val getMoviesUserCase: GetMoviesUserCase by useCase()
     private val _moviesViewState by viewState<Pair<GetMoviesUserCase.GetMoviesUserCaseEnum, SearchModel>>()
     val moviesViewState = _moviesViewState.asLiveData()
-    private val allEnums = GetMoviesUserCase.GetMoviesUserCaseEnum.values()
-    private var enumPosition = 0
+    val allEnums = GetMoviesUserCase.GetMoviesUserCaseEnum.values()
+    var enumPosition = 0
 
     fun getGenders() {
-        if (allEnums.size > enumPosition) {
-            val enum = allEnums[enumPosition]
-            _moviesViewState.postLoading()
-            getMoviesUserCase.invoke(
-                params = GetMoviesUserCase.Params(enum),
-                onSuccess = {
-                    _moviesViewState.postSuccess(Pair(enum, it))
-                },
-                onError = {
-                    _moviesViewState.postError(it)
-                }
-            )
-            enumPosition += 1
-        }
+        val enum = allEnums[enumPosition]
+        _moviesViewState.postLoading()
+        getMoviesUserCase.invoke(
+            params = GetMoviesUserCase.Params(enum),
+            onSuccess = {
+                _moviesViewState.postSuccess(Pair(enum, it))
+            },
+            onError = {
+                _moviesViewState.postError(it)
+            }
+        )
+        enumPosition += 1
     }
 
     fun resetViewStates() {

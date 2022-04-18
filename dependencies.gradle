@@ -20,6 +20,7 @@ ext {
             [configuration: "implementation", dependency: "$glide"],
             [configuration: "annotationProcessor", dependency: "$glideAnnotation"],
             [configuration: "implementation", dependency: "$blur"],
+            [configuration: "implementation", dependency: "$swiperefreshlayout"],
     ]
 
     intentDependencies = appDependencies + [
@@ -65,7 +66,6 @@ ext {
             [configuration: "kapt", dependency: "$roomCompiler"],
             [configuration: "implementation", dependency: "$roomKtx"],
             [configuration: "implementation", dependency: "$roomRx"],
-            [configuration: "implementation", dependency: "$guava"],
             [configuration: "implementation", dependency: "$sqlCipher"],
             [configuration: "implementation", dependency: "$sqlite"]
     ]

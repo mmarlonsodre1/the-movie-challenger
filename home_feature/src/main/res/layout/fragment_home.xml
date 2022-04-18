@@ -26,11 +26,17 @@
             android:textColor="@color/white"/>
     </androidx.appcompat.widget.Toolbar>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvGenders"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_home_first_list" />
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvGenders"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_home_first_list" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

@@ -25,6 +25,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         super.setupView()
         binding.rvGenders.adapter = adapter
         viewModel.getGenders()
+        binding.swContainer.setOnRefreshListener {
+            adapter.items = listOf()
+            viewModel.enumPosition = 0
+            viewModel.getGenders()
+        }
     }
 
     private fun updateItems(column: HomeItemModel) {
@@ -46,7 +51,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 }
             },
             onComplete = {
-                viewModel.getGenders()
+                if (viewModel.allEnums.size > viewModel.enumPosition) viewModel.getGenders()
+                else binding.swContainer.isRefreshing = false
             }
         )
     }

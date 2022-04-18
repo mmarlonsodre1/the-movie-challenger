@@ -50,11 +50,6 @@ ext {
     roomKtx = "androidx.room:room-ktx:$roomVersion"
     roomCompiler = "androidx.room:room-compiler:$roomVersion"
     roomRx = "androidx.room:room-rxjava2:$roomVersion"
-
-
-    guava = "com.google.guava:guava:$guavaVersion"
-
     sqlCipher = "net.zetetic:android-database-sqlcipher:$sqlCipherVersion"
     sqlite = "androidx.sqlite:sqlite:$sqliteVersion"
-
 }
