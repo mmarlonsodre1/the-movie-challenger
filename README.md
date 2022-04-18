@@ -10,7 +10,7 @@ Como rodar o projeto:
 * Rodar o projeto.
 
 
-# Items
+## Items
 * Listagem dos filmes.
 * Minha lista.
 * Detalhes do filme.
@@ -19,3 +19,7 @@ Como rodar o projeto:
 * Tratamento de erro.
 * Teste unitário nos módulos necessários.
 * Teste de Ui presente no módulo `app`.
+
+## Futuro (Faltou tempo)
+* Componentização
+* Animação
